@@ -19,7 +19,8 @@ class CreateGoalsTable extends Migration
             $table->string('description');
             $table->integer('progress');
             $table->integer('total');
-            // $table->foreign('author_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('community_vis');
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Goal;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GoalFactory extends Factory
@@ -26,7 +27,8 @@ class GoalFactory extends Factory
             'description' => $this->faker->text,
             'progress' => $this->faker->numberBetween(2, 50),
             'total' => $this->faker->numberBetween(50, 100),
-            'community_vis' => $this->faker->boolean
+            'community_vis' => $this->faker->boolean,
+            'user_id' => User::all()->random()->id
 
         ];
     }

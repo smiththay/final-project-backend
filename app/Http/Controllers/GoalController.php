@@ -12,10 +12,18 @@ class GoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
-        return Goal::all();
+        return Goal::all()->toArray();
     }
+
+
+    public function personal(Request $request)
+    {
+        return Goal::where('user_id', $request->user()->id)->get()->toArray();
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,11 +37,12 @@ class GoalController extends Controller
         $goal->description = $request->description;
         $goal->progress = $request->progress;
         $goal->total = $request->total;
+        $goal->user_id=$request->user()->id;
         $goal->community_vis = $request->community_vis;
 
 
         $goal->save();
-        return $goal;
+        return $goal->toArray();
     }
 
     /**
@@ -77,13 +86,14 @@ class GoalController extends Controller
      */
     public function update($id, Request $request)
     {
+
         $goal = Goal::find($id);
         $goal->title = $request->title;
         $goal->description = $request->description;
         $goal->progress = $request->progress;
         $goal->total = $request->total;
 
-        $goal->save(); //U
+        $goal->save();
         return $goal;
     }
 
@@ -94,8 +104,9 @@ class GoalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-
     {
+
+
         Goal::destroy($id);
         return "destroyed ID" . $id;
     }

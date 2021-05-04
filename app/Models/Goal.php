@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Goal extends Model
 {
@@ -19,7 +20,7 @@ class Goal extends Model
 ];
 
 
-   public function checkout() {
+   public function user() {
     return $this->belongsTo(User::class);
   }
 
