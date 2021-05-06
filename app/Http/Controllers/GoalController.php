@@ -15,6 +15,7 @@ class GoalController extends Controller
     public function all()
     {
         return Goal::all()->toArray();
+        //return $this->all()->toArray();
     }
 
 
@@ -23,7 +24,6 @@ class GoalController extends Controller
         return Goal::where('user_id', $request->user()->id)->get()->toArray();
 
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +42,7 @@ class GoalController extends Controller
 
 
         $goal->save();
-        return $goal->toArray();
+        return $this->personal($request);
     }
 
     /**
@@ -92,9 +92,10 @@ class GoalController extends Controller
         $goal->description = $request->description;
         $goal->progress = $request->progress;
         $goal->total = $request->total;
+        $goal->community_vis = $request->community_vis;
 
         $goal->save();
-        return $goal;
+        return $this->personal($request);
     }
 
     /**
@@ -103,11 +104,11 @@ class GoalController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
 
 
         Goal::destroy($id);
-        return "destroyed ID" . $id;
+        return $this->personal($request);
     }
 }

@@ -16,7 +16,7 @@ class Goal extends Model
     public $timestamps = true;
 
      protected $fillable = [
-      'title', 'description', 'progress', 'total'
+      'title', 'description', 'progress', 'total', 'community_vis'
 ];
 
 

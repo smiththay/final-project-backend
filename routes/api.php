@@ -17,7 +17,7 @@ use App\Http\Controllers\GoalController;
 */
 
 Route::group(['middleware' => ['auth:api']], function () {
-    // gets user with all order data
+
     Route::get('/user', [UserController::class, 'index']);
     // log out user
     Route::get('/logout', [UserController::class, 'logout']);
@@ -27,11 +27,11 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('/goals/personal', [GoalController::class, 'personal']);
 
-    Route::post('/goals/create', [GoalController::class, 'create']);
+    Route::post('/goal/create', [GoalController::class, 'create']);
 
-    Route::post('/goals/update/{id}', [GoalController::class, 'update']);
+    Route::post('/goal/update/{id}', [GoalController::class, 'update']);
 
-    Route::delete('/goals/destroy/{id}', [GoalController::class, 'destroy']);
+    Route::delete('/goal/destroy/{id}', [GoalController::class, 'destroy']);
 });
 
 Route::post('/register', [UserController::class, 'create']);
