@@ -3,31 +3,31 @@
 namespace App\Models;
 
 use Database\Seeders\UserSeeder;
+use Database\Seeders\GoalSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Model\Goal;
 
-
-class Goal extends Model
+class Comment extends Model
 {
     use HasFactory;
-    protected $table = 'goals';
+
+    protected $table = 'comments';
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
 
      protected $fillable = [
-      'title', 'description', 'progress', 'total', 'community_vis'
+      'content'
 ];
 
-
-   public function user() {
+   public function users() {
     return $this->belongsTo(User::class);
   }
-      public function comments()
-    {
 
-    return $this->hasMany(Comment::class);
-    }
+  public function goals() {
+    return $this->belongsTo(Goal::class);
+  }
 
 }

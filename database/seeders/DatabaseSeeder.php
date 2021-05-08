@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
            $this->call([
             GoalSeeder::class
         ]);
+             $this->call([
+            CommentSeeder::class
+        ]);
     }
-}
+    }
+

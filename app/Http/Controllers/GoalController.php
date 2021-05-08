@@ -73,10 +73,8 @@ class GoalController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
+    public function edit(){
     }
-
     /**
      * Update the specified resource in storage.
      *
