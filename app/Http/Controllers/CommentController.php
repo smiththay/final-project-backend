@@ -22,7 +22,7 @@ class CommentController extends Controller
     }
      public function goalcomments($goal_id)
     {
-        return Comment::where('goal_id', $goal_id)->get()->toArray();
+        return Comment::with('user')->where('goal_id', $goal_id)->get()->toArray();
         //return $this->all()->toArray();
 
     }

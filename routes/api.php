@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('/goals/all', [GoalController::class, 'all']);
 
+
     Route::get('/goals/personal', [GoalController::class, 'personal']);
 
     Route::post('/goal/create', [GoalController::class, 'create']);
