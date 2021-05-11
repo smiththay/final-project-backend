@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     // log out user
     Route::get('/logout', [UserController::class, 'logout']);
 
+    Route::get('/user/all', [UserController::class, 'all']);
+
 
     Route::get('/goals/all', [GoalController::class, 'all']);
 
@@ -37,7 +39,9 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/comment/create', [CommentController::class, 'create']);
 
-    Route::get('/comment/all', [GoalController::class, 'all']);
+    Route::get('/comment/all', [CommentController::class, 'all']);
+
+    Route::get('/comments/{goal_id}', [CommentController::class, 'goalcomments']);
 });
 
 Route::post('/register', [UserController::class, 'create']);

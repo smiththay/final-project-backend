@@ -14,14 +14,15 @@ class GoalController extends Controller
      */
     public function all()
     {
-        return Goal::all()->toArray();
+        return Goal::with('user')->get()->toArray();
+
         //return $this->all()->toArray();
     }
 
 
     public function personal(Request $request)
     {
-        return Goal::where('user_id', $request->user()->id)->get()->toArray();
+        return Goal::with('user')->where('user_id', $request->user()->id)->get()->toArray();
 
     }
 
@@ -64,7 +65,7 @@ class GoalController extends Controller
      */
     public function show($id)
     {
-        return Goal::find($id);
+        return Goal::find($id)->with('user')->get()->toArray();
     }
 
     /**

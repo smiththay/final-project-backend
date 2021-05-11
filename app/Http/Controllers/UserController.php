@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     /**
@@ -14,8 +17,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-          return $request->user();
+        return $request->user();
     }
+
+    public function all()
+    {
+        return User::all()->toArray();
+        //return $this->all()->toArray();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -23,14 +33,14 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-          $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
 
             'name' => 'required|string',
             'email' => 'required|email|max:64',
             'password' => 'required|string|min:8',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response(['message' => 'Validation errors', 'errors' =>  $validator->errors(), 'status' => false], 422);
         }
 
@@ -95,12 +105,13 @@ class UserController extends Controller
     {
         //
     }
-       public function logout(Request $request){
+    public function logout(Request $request)
+    {
         if (Auth::check()) {
             Auth::user()->token()->revoke();
-            return response()->json(['success' =>'logout_success'],200);
+            return response()->json(['success' => 'logout_success'], 200);
         } else {
-            return response()->json(['error' =>'api.something_went_wrong'], 500);
+            return response()->json(['error' => 'api.something_went_wrong'], 500);
         }
     }
 }

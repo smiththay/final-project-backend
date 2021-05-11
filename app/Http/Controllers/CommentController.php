@@ -14,10 +14,17 @@ class CommentController extends Controller
      */
     public function all()
     {
-         {
-        return Comment::all()->toArray();
-        //return $this->all()->toArray();
+
+        return Comment::with('user')->get()->toArray();
+        //all()->toArray();
+
+
     }
+     public function goalcomments($goal_id)
+    {
+        return Comment::where('goal_id', $goal_id)->get()->toArray();
+        //return $this->all()->toArray();
+
     }
 
     /**
@@ -32,8 +39,6 @@ class CommentController extends Controller
         $comment->user_id=$request->user()->id;
         $comment->goal_id=$request['goal_id'];
        // ->goal()->id;
-
-
 
     $comment->save(); //C
     return $comment;
@@ -56,7 +61,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+
     }
 
     /**
